@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Monitoring Kesehatan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-center mb-8">Sistem Monitoring Kesehatan</h1>
+        
+        <div class="ma  x-w-md mx-auto bg-white rounded-lg shadow-md p-6">
+            <div id="menu" class="space-y-4">
+                <button onclick="showInputForm()" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
+                    Input Data Pasien
+                </button>
+                <button onclick="showDataForm()" class="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">
+                    Tampilkan Data Pasien
+                </button>
+                <button onclick="showRecapForm()" class="w-full bg-purple-500 text-white py-2 rounded hover:bg-purple-600">
+                    Rekap Kesehatan Bulanan
+                </button>
+                <a href="https://www.example.com" class="w-full block text-center bg-red-500 text-white py-2 rounded hover:bg-red-600">
+                    Kunjungi Website
+                </a>            
+            </div>
+
+            <div id="inputForm" class="hidden">
+                <h2 class="text-xl font-semibold mb-4">Input Data Pasien</h2>
+                <form id="patientForm" class="space-y-4">
+                    <input type="text" id="nama" placeholder="Nama Pasien" required class="w-full px-3 py-2 border rounded">
+                    
+                    <div class="flex space-x-2">
+                        <input type="number" id="umur" placeholder="Umur" required class="w-full px-3 py-2 border rounded">
+                        <select id="jenisKelamin" class="w-full px-3 py-2 border rounded">
+                            <option value="">Pilih Jenis Kelamin</option>
+                            <option value="1">Pria</option>
+                            <option value="0">Wanita</option>
+                        </select>
+                    </div>
+
+                    <div class="flex space-x-2">
+                        <input type="number" id="sistolik" placeholder="Tekanan Darah Sistolik" required class="w-full px-3 py-2 border rounded">
+                        <input type="number" id="diastolik" placeholder="Tekanan Darah Diastolik" required class="w-full px-3 py-2 border rounded">
+                    </div>
+
+                    <div class="flex items-center space-x-2">
+                        <label>Sedang Puasa?</label>
+                        <input type="checkbox" id="puasa" class="mr-2">
+                    </div>
+
+                    <input type="number" id="gulaDarah" placeholder="Gula Darah (mg/dL)" required class="w-full px-3 py-2 border rounded">
+                    <input type="number" id="kolesterol" placeholder="Kolesterol (mg/dL)" required class="w-full px-3 py-2 border rounded">
+                    <input type="number" id="asamUrat" placeholder="Asam Urat (mg/dL)" required class="w-full px-3 py-2 border rounded">
+
+                    <div class="flex space-x-2">
+                        <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
+                            Simpan Data
+                        </button>
+                        <button type="button" onclick="showMenu()" class="w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">
+                            Kembali
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="dataForm" class="hidden">
+                <h2 class="text-xl font-semibold mb-4">Tampilkan Data Pasien</h2>
+                <form id="showDataForm" class="space-y-4">
+                    <input type="text" id="namaDataPasien" placeholder="Nama Pasien" required class="w-full px-3 py-2 border rounded">
+                    <div class="flex space-x-2">
+                        <button type="submit" class="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">
+                            Tampilkan Data
+                        </button>
+                        <button type="button" onclick="showMenu()" class="w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">
+                            Kembali
+                        </button>
+                    </div>
+                </form>
+                <div id="patientData" class="mt-4"></div>
+            </div>
+
+            <div id="recapForm" class="hidden">
+                <h2 class="text-xl font-semibold mb-4">Rekap Kesehatan Bulanan</h2>
+                <form id="monthlyRecapForm" class="space-y-4">
+                    <input type="text" id="namaRecapPasien" placeholder="Nama Pasien" required class="w-full px-3 py-2 border rounded">
+                    
+                    <select id="jenisDataRekap" class="w-full px-3 py-2 border rounded">
+                        <option value="">Pilih Jenis Data</option>
+                        <option value="1">Tensi (Sistolik dan Diastolik)</option>
+                        <option value="2">Gula Darah</option>
+                        <option value="3">Kolesterol</option>
+                        <option value="4">Asam Urat</option>
+                    </select>
+
+                    <select id="jenisRekap" class="w-full px-3 py-2 border rounded">
+                        <option value="">Pilih Opsi Rekap</option>
+                        <option value="1">Rekap per Checkup</option>
+                        <option value="2">Rekap Jumlah Checkup</option>
+                    </select>
+
+                    <div class="flex space-x-2">
+                        <input type="number" id="checkupStart" placeholder="Checkup Awal" class="w-full px-3 py-2 border rounded">
+                        <input type="number" id="checkupEnd" placeholder="Checkup Akhir" class="w-full px-3 py-2 border rounded" style="display:none;">
+                    </div>
+
+                    <div class="flex space-x-2">
+                        <button type="submit" class="w-full bg-purple-500 text-white py-2 rounded hover:bg-purple-600">
+                            Tampilkan Rekap
+                        </button>
+                        <button type="button" onclick="showMenu()" class="w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600">
+                            Kembali
+                        </button>
+                    </div>
+                </form>
+                <div id="recapData" class="mt-4"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // UI Navigation Functions
+        function showMenu() {
+            document.getElementById('menu').style.display = 'block';
+            document.getElementById('inputForm').style.display = 'none';
+            document.getElementById('dataForm').style.display = 'none';
+            document.getElementById('recapForm').style.display = 'none';
+        }
+
+        function showInputForm() {
+            document.getElementById('menu').style.display = 'none';
+            document.getElementById('inputForm').style.display = 'block';
+        }
+
+        function showDataForm() {
+            document.getElementById('menu').style.display = 'none';
+            document.getElementById('dataForm').style.display = 'block';
+        }
+
+        function showRecapForm() {
+            document.getElementById('menu').style.display = 'none';
+            document.getElementById('recapForm').style.display = 'block';
+        }
+
+        // Event Listeners
+        document.getElementById('jenisRekap').addEventListener('change', function() {
+            const checkupEnd = document.getElementById('checkupEnd');
+            checkupEnd.style.display = this.value === '2' ? 'block' : 'none';
+        });
+
+        document.getElementById('patientForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Data pasien akan disimpan'); // Placeholder for actual save functionality
+        });
+
+        document.getElementById('showDataForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Menampilkan data pasien'); // Placeholder for data retrieval
+        });
+
+        document.getElementById('monthlyRecapForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Menampilkan rekap data'); // Placeholder for recap functionality
+        });
+    </script>
+</body>
+</html>
